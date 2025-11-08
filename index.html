@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>선진특장 A/S 챗봇 문의</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="선진특장 A/S 챗봇 문의창 (비공식 데모)">
+</head>
+<body>
+  <!-- 상단 바 -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">S</div>
+      <div class="brand-text">
+        <strong>선진특장</strong>
+        <span>Sunjin Special Vehicle</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="http://www.sunjinsv.co.kr/" target="_blank" rel="noopener">회사 홈페이지</a>
+      <button id="btnPrint" class="ghost">인쇄</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- 왼쪽: 고객/차량 정보 + 접수 폼 -->
+    <section class="card left">
+      <h2>A/S 접수 정보</h2>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="custName">고객명</label>
+          <input id="custName" type="text" placeholder="예: 홍길동" />
+        </div>
+        <div class="field">
+          <label for="phone">연락처</label>
+          <input id="phone" type="tel" placeholder="예: 010-1234-5678" />
+        </div>
+        <div class="field">
+          <label for="model">차종/모델</label>
+          <input id="model" type="text" placeholder="예: 현대 파비스 덤프" />
+        </div>
+        <div class="field">
+          <label for="vin">차대번호(VIN)</label>
+          <input id="vin" type="text" placeholder="예: KMHXXXXXXXXXXXX" />
+        </div>
+        <div class="field">
+          <label for="plate">차량번호</label>
+          <input id="plate" type="text" placeholder="예: 12가 3456" />
+        </div>
+        <div class="field">
+          <label for="region">지역</label>
+          <input id="region" type="text" placeholder="예: 울산/경기/부산…" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="symptom">증상(상세)</label>
+        <textarea id="symptom" rows="5" placeholder="예: 기어펌프 누유 및 이상소음 발생, 주행 중 유압저하…"></textarea>
+      </div>
+
+      <div class="chips" id="quickIssues">
+        <button data-add="기어펌프 누유">기어펌프 누유</button>
+        <button data-add="기어펌프 소음">기어펌프 소음</button>
+        <button data-add="실린더 자연하강">실린더 자연하강</button>
+        <button data-add="유압 약함">유압 약함</button>
+        <button data-add="전기배선 점검 필요">전기배선</button>
+      </div>
+
+      <div class="upload">
+        <label class="file">
+          사진/동영상 첨부
+          <input id="files" type="file" multiple accept="image/*,video/*" />
+        </label>
+        <div id="preview" class="preview"></div>
+      </div>
+
+      <div class="consent">
+        <input id="consent" type="checkbox" />
+        <label for="consent">개인정보 수집·이용에 동의합니다. (문의 처리 목적, 보관기간: 처리 완료 후 파기)</label>
+      </div>
+
+      <div class="row">
+        <button id="btnNew" class="ghost">새 문의</button>
+        <div class="spacer"></div>
+        <button id="btnSave" class="secondary">저장</button>
+        <button id="btnLoad" class="secondary">불러오기</button>
+        <button id="btnCsv" class="secondary">CSV 내보내기</button>
+        <button id="btnDraft" class="primary">A/S 접수요청 초안</button>
+      </div>
+
+      <details class="mt8">
+        <summary>초안 미리보기</summary>
+        <textarea id="draft" rows="8" readonly></textarea>
+        <div class="row">
+          <button id="btnCopyDraft" class="ghost">초안 복사</button>
+          <button id="btnDownloadDraft" class="ghost">TXT 다운로드</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- 오른쪽: 챗봇 -->
+    <section class="card right">
+      <div class="chat-head">
+        <h2>A/S 챗봇 상담</h2>
+        <span class="status"><span class="dot"></span> 온라인</span>
+      </div>
+
+      <div id="chat" class="chat-area" aria-live="polite"></div>
+
+      <div class="quickbar">
+        <button class="chip" data-q="접수 방법">접수 방법</button>
+        <button class="chip" data-q="운영시간">운영시간</button>
+        <button class="chip" data-q="누유 해결">누유 해결</button>
+        <button class="chip" data-q="자연 하강">자연 하강</button>
+        <button class="chip" data-q="진행 조회">진행 조회</button>
+      </div>
+
+      <form id="chatForm" class="composer">
+        <input id="chatInput" type="text" placeholder="메시지를 입력하세요… (Enter 전송)" autocomplete="off" />
+        <button class="send" aria-label="전송">전송</button>
+      </form>
+
+      <div class="row">
+        <button id="btnExportChat" class="ghost">대화 내보내기(txt)</button>
+        <button id="btnClearChat" class="ghost">대화 지우기</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>본 페이지는 과제용 데모입니다. 실제 A/S 접수는 회사 공식 채널을 이용해 주세요.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
